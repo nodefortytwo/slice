@@ -1,8 +1,8 @@
 package slice
 
-type StrSlice []string
+type String []string
 
-func (ss StrSlice) Index(t string) int {
+func (ss String) Index(t string) int {
     for i, v := range ss {
         if v == t {
             return i
@@ -11,11 +11,11 @@ func (ss StrSlice) Index(t string) int {
     return -1
 }
 
-func (ss StrSlice) Contains(t string) bool {
+func (ss String) Contains(t string) bool {
     return ss.Index(t) >= 0
 }
 
-func (ss StrSlice) Any(f func(string) bool) bool {
+func (ss String) Any(f func(string) bool) bool {
     for _, v := range ss {
         if f(v) {
             return true
@@ -24,7 +24,7 @@ func (ss StrSlice) Any(f func(string) bool) bool {
     return false
 }
 
-func (ss StrSlice) All(f func(string) bool) bool {
+func (ss String) All(f func(string) bool) bool {
     for _, v := range ss {
         if !f(v) {
             return false
@@ -33,7 +33,7 @@ func (ss StrSlice) All(f func(string) bool) bool {
     return true
 }
 
-func (ss StrSlice) Filter(f func(string) bool) []string {
+func (ss String) Filter(f func(string) bool) []string {
     vsf := make([]string, 0)
     for _, v := range ss {
         if f(v) {
@@ -43,7 +43,7 @@ func (ss StrSlice) Filter(f func(string) bool) []string {
     return vsf
 }
 
-func (ss StrSlice) Map(f func(string) string) []string {
+func (ss String) Map(f func(string) string) []string {
     vsm := make([]string, len(ss))
     for i, v := range ss {
         vsm[i] = f(v)
