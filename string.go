@@ -62,3 +62,7 @@ func (ss String) Map(f func(string) string) String {
     }
     return vsm
 }
+
+func (ss String) Slice() []string {
+    return ss
+}

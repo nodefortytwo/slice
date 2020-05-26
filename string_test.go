@@ -27,6 +27,11 @@ func TestString (t *testing.T){
 	assert.Equal(t, String(strs).Any(isPeach),true)
 	assert.Equal(t, String(strs).Filter(isPeach), String{"peach"})
 	assert.Equal(t, String(strs).Map(makePeach)[0], "peach")
+
+
+	strings := String{"awesome"}
+	assert.Equal(t,strings.Slice(), []string{"awesome"})
+
 }
 
 func isPeach(s string) bool{
