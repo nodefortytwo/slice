@@ -1,0 +1,39 @@
+run:
+  tests: true
+linters:
+  disable-all: true
+  enable:
+    - errcheck
+    - govet
+    - staticcheck
+    - unused
+    - gosimple
+    - structcheck
+    - varcheck
+    - ineffassign
+    - deadcode
+    - typecheck
+    - stylecheck
+    - gosec
+    - interfacer
+    - unconvert
+    - dupl
+    - goconst
+    - gocyclo
+    - gocognit
+    - asciicheck
+    - goimports
+    - maligned
+    - lll
+    - unparam
+    - prealloc
+    - gocritic
+    - gochecknoglobals
+    - godox
+    - funlen
+    - wsl
+    - gomnd
+    - goerr113
+    - testpackage
+    - godoc
+    - nestif
