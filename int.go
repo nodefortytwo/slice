@@ -8,22 +8,35 @@ import (
 
 type Int []int64
 
-func MakeInt(i interface{}) Int {
+const (
+	ErrorInvalidType = "%T cannot be converted to %s"
+)
+
+func MustMakeInt(i interface{}) Int {
+	is, err := MakeInt(i)
+	if err != nil {
+		panic(err)
+	}
+
+	return is
+}
+
+func MakeInt(i interface{}) (Int, error) {
 	switch v := i.(type) {
 	case []int:
-		return MakeIntFromInt(v)
+		return MakeIntFromInt(v), nil
 	case []int8:
-		return MakeIntFromInt8(v)
+		return MakeIntFromInt8(v), nil
 	case []int16:
-		return MakeIntFromInt16(v)
+		return MakeIntFromInt16(v), nil
 	case []int32:
-		return MakeIntFromInt32(v)
+		return MakeIntFromInt32(v), nil
 	case []int64:
-		return v
+		return v, nil
 	case []string:
-		return MakeIntFromString(v)
+		return MakeIntFromString(v), nil
 	default:
-		panic(fmt.Sprintf("Unspported type %T", v))
+		return nil, &SliceError{fmt.Sprintf(ErrorInvalidType, v, "slice.Int")}
 	}
 }
 

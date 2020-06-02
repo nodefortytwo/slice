@@ -3,8 +3,9 @@ package slice_test
 import (
 	"testing"
 
-	"github.com/nodefortytwo/slice"
 	"github.com/stretchr/testify/assert"
+
+	"github.com/nodefortytwo/slice"
 )
 
 func TestString(t *testing.T) {

@@ -30,5 +30,9 @@ func TestInt(t *testing.T) {
 	ints = slice.Int{4, 1, 3, 2}
 	assert.Equal(t, int64(1), ints.Sort()[0])
 
-	assert.Equal(t, int64(2), slice.MakeInt([]string{"1", "1"}).Sum())
+	assert.Equal(t, int64(2), slice.MustMakeInt([]string{"1", "1"}).Sum())
+
+	assert.Panics(t, func() {
+		slice.MustMakeInt([]float64{0})
+	})
 }
