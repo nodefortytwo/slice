@@ -81,6 +81,28 @@ func (is Float) Sort() Float {
 	return is
 }
 
+func (is Float) Min() float64 {
+	min := is[0]
+	for _, v := range is {
+		if v < min {
+			min = v
+		}
+	}
+
+	return min
+}
+
+func (is Float) Max() float64 {
+	var max float64
+	for _, v := range is {
+		if v > max {
+			max = v
+		}
+	}
+
+	return max
+}
+
 func (is Float) Len() int           { return len(is) }
 func (is Float) Less(i, j int) bool { return is[i] < is[j] }
 func (is Float) Swap(i, j int)      { is[i], is[j] = is[j], is[i] }
