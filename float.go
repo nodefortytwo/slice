@@ -73,6 +73,10 @@ func (is Float) Sum() float64 {
 }
 
 func (is Float) Avg() float64 {
+	if is.Len() == 0 {
+		return 0
+	}
+
 	return is.Sum() / float64(is.Len())
 }
 

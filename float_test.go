@@ -32,6 +32,9 @@ func TestFloat(t *testing.T) {
 
 	assert.Equal(t, 2.75, slice.MustMakeFloat([]string{"1.75", "1"}).Sum())
 
+	assert.Equal(t, float64(1), floats.Min())
+	assert.Equal(t, float64(4), floats.Max())
+
 	assert.Panics(t, func() {
 		slice.MustMakeInt([]float64{0})
 	})
