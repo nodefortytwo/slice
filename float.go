@@ -111,6 +111,36 @@ func (is Float) Max() float64 {
 	return max
 }
 
+func (is Float) PercentageUnder(level float64) float64 {
+	if is.Len() == 0 {
+		return 1
+	}
+
+	var i float64
+	for _, v := range is {
+		if v < level {
+			i++
+		}
+	}
+
+	return i / float64(is.Len())
+}
+
+func (is Float) PercentageOver(level float64) float64 {
+	if is.Len() == 0 {
+		return 1
+	}
+
+	var i float64
+	for _, v := range is {
+		if v > level {
+			i++
+		}
+	}
+
+	return i / float64(is.Len())
+}
+
 func (is Float) Len() int           { return len(is) }
 func (is Float) Less(i, j int) bool { return is[i] < is[j] }
 func (is Float) Swap(i, j int)      { is[i], is[j] = is[j], is[i] }
