@@ -82,6 +82,10 @@ func (is Float) Sort() Float {
 }
 
 func (is Float) Min() float64 {
+	if is.Len() == 0 {
+		return 0
+	}
+
 	min := is[0]
 	for _, v := range is {
 		if v < min {
