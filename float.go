@@ -2,6 +2,7 @@ package slice
 
 import (
 	"fmt"
+	"math"
 	"sort"
 	"strconv"
 )
@@ -111,12 +112,42 @@ func (is Float) Max() float64 {
 	return max
 }
 
+func (is Float) Percentile(percent float64) (float64, error) {
+	var percentile float64
+
+	if is.Len() == 0 {
+		return 0, nil
+	}
+
+	if is.Len() == 1 {
+		return is[0], nil
+	}
+
+	if percent <= 0 || percent > 100 {
+		return math.NaN(), fmt.Errorf("percentage out of bounds")
+	}
+
+	is.Sort()
+
+	index := (percent / 100) * float64(is.Len())
+	if index == float64(int64(index)) {
+		i := int(index)
+		percentile = is[i-1]
+	} else if index > 1 {
+		i := int(index)
+		percentile = Float{is[i-1], is[i]}.Avg()
+	}
+
+	return percentile, nil
+}
+
 func (is Float) PercentageUnder(level float64) float64 {
 	if is.Len() == 0 {
 		return 1
 	}
 
 	var i float64
+
 	for _, v := range is {
 		if v < level {
 			i++
@@ -132,6 +163,7 @@ func (is Float) PercentageOver(level float64) float64 {
 	}
 
 	var i float64
+
 	for _, v := range is {
 		if v > level {
 			i++
