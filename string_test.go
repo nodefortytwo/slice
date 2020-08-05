@@ -30,6 +30,9 @@ func TestString(t *testing.T) {
 
 	strings := slice.String{"awesome"}
 	assert.Equal(t, strings.Slice(), []string{"awesome"})
+
+	strings = slice.String{"test", "test", "test2"}
+	assert.Equal(t, strings.Unique(), slice.String{"test", "test2"})
 }
 
 func isPeach(s string) bool {

@@ -74,6 +74,18 @@ func (ss String) Map(f func(string) string) String {
 	return vsm
 }
 
+func (ss String) Unique() String{
+	keys := make(map[string]bool)
+	list := []string{}
+	for _, entry := range ss {
+		if _, value := keys[entry]; !value {
+			keys[entry] = true
+			list = append(list, entry)
+		}
+	}
+	return list
+}
+
 func (ss String) Slice() []string {
 	return ss
 }
